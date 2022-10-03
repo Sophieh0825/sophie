@@ -38,6 +38,9 @@ int main()
     for(int h = 0 ; h<=5 ; h++){
         for(int s = 0 ; s<=5 ; s++){
 
+            if (h == 0 && s == 0)
+              continue;
+          
             rev = findOptOrders(h,s, sumLabor , sumSupply , limH , limS , currentSol , itemCount , revenue , labor , supply) ;
             if(rev > maxRev)
             {
@@ -79,6 +82,10 @@ int findWorst(int itemCount , int weightH , int weightS , const double revenue[]
 int findOptOrders(int weightH , int weightS , int sumLabor , int sumSupply , int limH , int limS ,int currentSol[] , int itemCount , const double revenue[] , const double labor[] ,const double supply[])
 {
     int sumRevenue = 0;
+    for(int i = 0 ; i<itemCount ; i++)
+      {
+        currentSol[i] = 1;
+      }
     while(sumLabor > limH || sumSupply > limS)
     {
         sumLabor = 0;
@@ -90,9 +97,17 @@ int findOptOrders(int weightH , int weightS , int sumLabor , int sumSupply , int
         {
             sumLabor += labor[i]*currentSol[i];
             sumSupply += supply[i]*currentSol[i];
-            
         }
     }
+
+    for(int i = 0 ; i<itemCount ; i++)
+      {
+        sumLabor += labor[i];
+      }
+    for(int i = 0 ; i<itemCount ; i++)
+      {
+        sumSupply += supply[i];
+      }
     
     for(int i  = 0 ; i < itemCount ; i++)
     {
@@ -100,6 +115,15 @@ int findOptOrders(int weightH , int weightS , int sumLabor , int sumSupply , int
     }
     return sumRevenue;
 }
+
+
+
+
+
+
+
+
+
 
 
 
