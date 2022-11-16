@@ -72,18 +72,13 @@ int main()
     nightSum[i] = 0;
 
   for(int i = 0 ; i < shiftType + 1 ; i++) // 夜班班型要掃描陣列
-  {
-    for(int j = 0 ; j < 24 ; j++)
-    {
+    for(int j = 0 ; j < 24 ; j++）
       nightSum[i] += shift[i][j];
-    }
-  }
       
   for(int i = 0; i < shiftType + 1; i++) // 夜班班型要掃描陣列
   {
     for(int j = 18; j < 24; j++)
     {
-      // nightSum[i] += shift[i][j];
       if(shift[i][j] == 1 && nightSum[i] >= 8) // 如果 shift[i][18～23] == 1 開始就是夜班
         nightShift[i] = 1;
     }
@@ -100,7 +95,6 @@ int main()
         maxOfNight = i;
     }
   }
-  ///
 
   // 計算每一位員工的休假數
   int *offSum = new int[employeeCnt];
@@ -146,23 +140,18 @@ int main()
         break;
     }
   }
-  ////
+
   int fitCnt = 0;
 
   satisfyOffRequest(offRequest, request, schedule);
   arrangeOff(employeeCnt, dayCnt, dayOffDemand, schedule, demand , sortNum, offSum, nightCnt ,shiftType ,maxOfNight);
   arrangeNight(employeeCnt, dayCnt, shiftType, nightCnt, maxOfNight, shift, nightShift, schedule);
-  //tooMuchOff(employeeCnt, dayCnt, nightCnt, dayOffDemand, schedule, sortNum, offSum);
   arrangeAll(employeeCnt, dayCnt, shiftType, nightCnt, schedule, nightShift, shift, fitCnt);
 
   for (int i = 0; i < employeeCnt; i++) 
-  {
     for (int j = 0; j < dayCnt; j++) 
-    {
       if(schedule[i][j] == -3)
         schedule[i][j] = 0;
-    }
-  }
   
   for (int i = 0; i < employeeCnt; i++) 
   {
