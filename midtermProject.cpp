@@ -6,8 +6,6 @@ void satisfyOffRequest(int offRequest, int **request, int **schedule);
 void arrangeOff(int employeeCnt, int dayCnt, int dayOffDemand, int **schedule, int **demand , int *sortNum, int *offSum, int nightCnt , int shiftType , int maxOfNight);
 void arrangeNight(int employeeCnt, int dayCnt, int shiftType, int nightCnt, int maxOfNight, int **shift, int *nightShift, int **schedule);
 void arrangeAll(int employeeCnt, int dayCnt, int shiftType, int nightCnt, int **schedule, int *nightShift, int **shift, int& fitCnt);
-void workLoss(int clerkCnt, int dayCnt, int** clerk, int** shift, int** dayRequire);
-int lossSum(int dayCnt, int** dayRequire);
 
 int main() 
 {
@@ -389,34 +387,4 @@ void arrangeAll(int employeeCnt, int dayCnt, int shiftType, int nightCnt, int **
         }
     }
   }
-}
-
-void workLoss(int clerkCnt, int dayCnt, int** clerk, int** shift, int** dayRequire)
-{
-  for(int i = 0; i < clerkCnt; i++)
-  {
-    for(int j = 0; j < dayCnt; j++)
-    {
-      int m = clerk[0][j];
-      for(int k = 0; k < 24; k++)
-      {
-        int m = clerk[i][j]; //m是員工i號在第j天的班型
-        dayRequire[j][k] -= shift[m][k];
-      }
-    }
-  }
-}
-
-int lossSum(int dayCnt, int** dayRequire) 
-{
-  int lossSum = 0;
-  for(int i = 0; i < dayCnt; i++)
-  {
-    for(int j = 0; j < 24; j++)
-    {
-      if(dayRequire[i][j] > 0)
-        lossSum += dayRequire[i][j];
-    }
-  }
-  return lossSum;
 }
