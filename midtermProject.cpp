@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 using namespace std;
 
 void satisfyOffRequest(int offRequest, int **request, int **schedule);
@@ -330,7 +331,6 @@ void arrangeNight(int employeeCnt, int dayCnt, int shiftType, int nightCnt, int 
   {
     for (int j = 0; j < dayCnt; j++) 
     {
-      ///////
       if (schedule[i][j] == -5) 
       {
         if ((w % nightCnt) != 0)
@@ -379,8 +379,6 @@ void arrangeAll(int employeeCnt, int dayCnt, int shiftType, int nightCnt, int **
   {
     for (int i = 0 ; i < employeeCnt ; i++) 
     {
-      //if(shiftType != nightCnt)
-      //{
         index = 1;
      
         while(index != 0)
