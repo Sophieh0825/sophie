@@ -1,10 +1,7 @@
 #include <iostream>
 #include <Box2D/Box2D.h>
 #include <stdio.h>
-
-
-
-
+#include <SDL2/SDL.h>
 
 
 
